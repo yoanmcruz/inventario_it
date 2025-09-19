@@ -8,7 +8,9 @@ from django.http import HttpResponse
 import openpyxl
 from io import BytesIO
 from django.template.loader import get_template
+from django.template.loader import render_to_string
 from weasyprint import HTML
+
 
 def es_admin(user):
     return user.is_staff
