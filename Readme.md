@@ -8,7 +8,7 @@ Sistema profesional de gestión de inventario informático con autenticación y 
 ✅ Gestión de usuarios con roles (Admin/Técnico)
 ✅ Auditoría completa de todas las actividades
 ✅ Sesiones seguras 
-✅ Contraseñas hasheadas
+✅ Contraseñas hasheadas 
 📊 Gestión de Inventario
 ✅ Registro de equipos con componentes
 ✅ Bitácora de reparaciones con trazabilidad completa
