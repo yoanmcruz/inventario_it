@@ -4,6 +4,7 @@ from django.db.models import Q
 from .models import Equipo
 from .forms import EquipoForm
 from bitacora.models import Auditoria, RegistroBitacora
+from .resources import EquipoResource
 from django.http import HttpResponse
 import openpyxl
 from io import BytesIO
@@ -73,37 +74,43 @@ def eliminar_equipo(request, pk):
 
 @login_required
 def exportar_equipos_excel(request):
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    equipo_resource = EquipoResource()
+    dataset = equipo_resource.export()
+    response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="inventario_equipos.xlsx"'
-    
-    workbook = openpyxl.Workbook()
-    worksheet = workbook.active
-    worksheet.title = "Inventario IT"
-    
-    columns = ['Nombre', 'Tipo', 'Marca', 'Modelo', 'Serial', 'Ubicación', 'Estado', 'Fecha Adquisición']
-    row_num = 1
-    for col_num, column_title in enumerate(columns, 1):
-        cell = worksheet.cell(row=row_num, column=col_num)
-        cell.value = column_title
-
-    for equipo in Equipo.objects.all():
-        row_num += 1
-        row = [
-            equipo.nombre,
-            equipo.get_tipo_display(),
-            equipo.marca,
-            equipo.modelo,
-            equipo.serial,
-            equipo.ubicacion,
-            equipo.get_estado_display(),
-            equipo.fecha_adquisicion.strftime('%Y-%m-%d'),
-        ]
-        for col_num, cell_value in enumerate(row, 1):
-            cell = worksheet.cell(row=row_num, column=col_num)
-            cell.value = cell_value
-    
-    workbook.save(response)
     return response
+#def exportar_equipos_excel(request):
+#   response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#    response['Content-Disposition'] = 'attachment; filename="inventario_equipos.xlsx"'
+    
+#    workbook = openpyxl.Workbook()
+#    worksheet = workbook.active
+#    worksheet.title = "Inventario IT"
+    
+#    columns = ['Nombre', 'Tipo', 'Marca', 'Modelo', 'Serial', 'Ubicación', 'Estado', 'Fecha Adquisición']
+#    row_num = 1
+#    for col_num, column_title in enumerate(columns, 1):
+#       cell = worksheet.cell(row=row_num, column=col_num)
+#        cell.value = column_title
+
+#    for equipo in Equipo.objects.all():
+#        row_num += 1
+#        row = [
+#            equipo.nombre,
+#            equipo.get_tipo_display(),
+#            equipo.marca,
+#            equipo.modelo,
+#           equipo.serial,
+#            equipo.ubicacion,
+#            equipo.get_estado_display(),
+#            equipo.fecha_adquisicion.strftime('%Y-%m-%d'),
+#        ]
+#        for col_num, cell_value in enumerate(row, 1):
+#            cell = worksheet.cell(row=row_num, column=col_num)
+#            cell.value = cell_value
+    
+#    workbook.save(response)
+#    return response
 
 @login_required
 def exportar_equipos_pdf(request):
