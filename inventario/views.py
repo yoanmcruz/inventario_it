@@ -4,7 +4,7 @@ from django.db.models import Q
 from .models import Equipo
 from .forms import EquipoForm
 from bitacora.models import Auditoria, RegistroBitacora
-from .resources import EquipoResource
+#from .resources import EquipoResource
 from django.http import HttpResponse
 import openpyxl
 from io import BytesIO
