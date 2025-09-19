@@ -5,8 +5,11 @@ Sistema profesional de gestión de inventario informático con autenticación y 
 🚀 Características Principales
 🔐 Seguridad y Autenticación
 ✅ Login únicamente con email corporativo (@tuempresa.com)
+
 ✅ Gestión de usuarios con roles (Admin/Técnico)
+
 ✅ Auditoría completa de todas las actividades
+
 ✅ Sesiones seguras 
 ✅ Contraseñas hasheadas
 📊 Gestión de Inventario
