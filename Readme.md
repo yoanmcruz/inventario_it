@@ -32,4 +32,6 @@ Dominio empresarial configurado (para emails)
 git clone https://github.com/yoanmcruz/inventario_it.git
 2. Instalar las dependencias 
 pip install -r requeriments.txt
-3. 
+3. Instalar Weasyprint
+https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation
+
