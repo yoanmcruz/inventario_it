@@ -1,15 +1,15 @@
-#🖥️ Bitácora IT - Sistema de Gestión con Autenticación
+# 🖥️ Bitácora IT - Sistema de Gestión con Autenticación
 
 Sistema profesional de gestión de inventario informático con autenticación y auditoría completa de actividades.
 
-🚀 Características Principales
-##🔐 Seguridad y Autenticación
-###✅ Login únicamente con email corporativo (@tuempresa.com)
-###✅ Gestión de usuarios con roles (Admin/Técnico)
--✅ Auditoría completa de todas las actividades
--✅ Sesiones seguras 
--✅ Contraseñas hasheadas 
--📊 Gestión de Inventario
+# 🚀 Características Principales
+## 🔐 Seguridad y Autenticación
+### ✅ Login únicamente con email corporativo (@tuempresa.com)
+### ✅ Gestión de usuarios con roles (Admin/Técnico)
+- ✅ Auditoría completa de todas las actividades
+- ✅ Sesiones seguras 
+- ✅ Contraseñas hasheadas 
+- 📊 Gestión de Inventario
  -✅ Registro de equipos con componentes
  -✅ Bitácora de reparaciones con trazabilidad completa
  -✅ Estados de equipos (Disponible, En taller, etc.)
