@@ -3,9 +3,9 @@
 Sistema profesional de gestión de inventario informático con autenticación y auditoría completa de actividades.
 
 🚀 Características Principales
--🔐 Seguridad y Autenticación
--✅ Login únicamente con email corporativo (@tuempresa.com)
--✅ Gestión de usuarios con roles (Admin/Técnico)
+##🔐 Seguridad y Autenticación
+###✅ Login únicamente con email corporativo (@tuempresa.com)
+###✅ Gestión de usuarios con roles (Admin/Técnico)
 -✅ Auditoría completa de todas las actividades
 -✅ Sesiones seguras 
 -✅ Contraseñas hasheadas 
