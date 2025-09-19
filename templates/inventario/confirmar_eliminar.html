@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Confirmar Eliminación{% endblock %}
+{% block content %}
+    <h1>Confirmar Eliminación</h1>
+    <hr>
+    <p>¿Estás seguro de que deseas eliminar el equipo <strong>{{ equipo.nombre }}</strong>?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <p>Esta acción es irreversible.</p>
+        <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+        <a href="{% url 'lista_equipos' %}">Cancelar</a>
+    </form>
+{% endblock %}

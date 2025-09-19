@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <h1>Dashboard</h1>
+    <hr>
+    <div class="dashboard-stats">
+        <p><strong>Total de equipos:</strong> {{ estadisticas.total_equipos }}</p>
+        <p><strong>Equipos activos:</strong> {{ estadisticas.equipos_activos }}</p>
+        <p><strong>Equipos en mantenimiento:</strong> {{ estadisticas.equipos_mantenimiento }}</p>
+    </div>
+    
+    <h2>Últimas Reparaciones</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Equipo</th>
+                <th>Descripción</th>
+                <th>Técnico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in ultimas_reparaciones %}
+                <tr>
+                    <td>{{ registro.fecha|date:"d M Y H:i" }}</td>
+                    <td>{{ registro.equipo.nombre }}</td>
+                    <td>{{ registro.descripcion }}</td>
+                    <td>{{ registro.usuario.username }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No hay registros de reparaciones recientes.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

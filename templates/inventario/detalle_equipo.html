@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Detalle de Equipo{% endblock %}
+{% block content %}
+    <h1>Detalle de {{ equipo.nombre }}</h1>
+    <hr>
+    <div>
+        <p><strong>Tipo:</strong> {{ equipo.get_tipo_display }}</p>
+        <p><strong>Marca:</strong> {{ equipo.marca }}</p>
+        <p><strong>Modelo:</strong> {{ equipo.modelo }}</p>
+        <p><strong>Serial:</strong> {{ equipo.serial }}</p>
+        <p><strong>Ubicación:</strong> {{ equipo.ubicacion }}</p>
+        <p><strong>Estado:</strong> {{ equipo.get_estado_display }}</p>
+        <p><strong>Fecha de Adquisición:</strong> {{ equipo.fecha_adquisicion|date:"d M Y" }}</p>
+        <p><strong>Descripción:</strong> {{ equipo.descripcion|default:"N/A" }}</p>
+    </div>
+    
+    <a href="{% url 'modificar_equipo' equipo.pk %}" class="btn">Modificar Equipo</a>
+    <a href="{% url 'lista_equipos' %}">Volver al Inventario</a>
+
+    <h2>Historial de Bitácora</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Descripción</th>
+                <th>Técnico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.fecha|date:"d M Y H:i" }}</td>
+                    <td>{{ registro.descripcion }}</td>
+                    <td>{{ registro.usuario.username }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No hay registros de bitácora para este equipo.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
