@@ -106,4 +106,4 @@ EMAIL_HOST_USER = 'tu_correo@tuempresa.com'
 EMAIL_HOST_PASSWORD = 'tu_contraseña'
 
 # Dominio para autenticación por correo
-ALLOWED_DOMAINS_FOR_REGISTRATION = ['tuempresa.com']
+ALLOWED_DOMAINS_FOR_REGISTRATION = ['eleccmg.une.cu']
