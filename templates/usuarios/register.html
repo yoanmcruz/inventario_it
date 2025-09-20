@@ -3,41 +3,43 @@
 {% block content %}
 <style>
     body {
-        background-color: #121212; /* Fondo oscuro */
-        color: #e0e0e0; /* Texto claro */
+        background-color: #f8f9fa;
+        color: #212529;
     }
-    .card-futuristic {
-        background-color: #1e1e1e; /* Color de la tarjeta más claro */
-        border: 1px solid #333;
+    .card-login {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
         border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        color: #212529;
     }
     .form-control-futuristic {
-        background-color: #2b2b2b;
-        color: #e0e0e0;
-        border: 1px solid #555;
+        background-color: #ffffff;
+        color: #212529;
+        border: 1px solid #ced4da;
         transition: border-color 0.3s ease-in-out;
     }
     .form-control-futuristic:focus {
-        background-color: #2b2b2b;
-        color: #e0e0e0;
-        border-color: #00aaff; /* Borde azul brillante al enfocar */
-        box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
+        background-color: #ffffff;
+        color: #212529;
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
     }
     .btn-futuristic {
-        background-color: #00aaff;
+        background-color: #007bff;
         border: none;
         transition: background-color 0.3s ease-in-out;
+        color: white;
     }
     .btn-futuristic:hover {
-        background-color: #0088cc;
+        background-color: #0056b3;
     }
 </style>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 85vh;">
     <div class="col-md-5">
-        <div class="card card-futuristic p-4">
-            <h1 class="card-title text-center mb-4 text-info">Registro de Usuario</h1>
+        <div class="card card-login p-4">
+            <h1 class="card-title text-center mb-4 text-primary">Registro de Usuario</h1>
             <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
                 {% for field in form %}
@@ -54,7 +56,7 @@
                 </div>
             </form>
             <div class="mt-3 text-center">
-                <p>¿Ya tienes cuenta? <a href="{% url 'login' %}" class="text-info">Inicia sesión aquí</a></p>
+                <p>¿Ya tienes cuenta? <a href="{% url 'login' %}" class="text-primary">Inicia sesión aquí</a></p>
             </div>
         </div>
     </div>

@@ -7,64 +7,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            background-color: #121212;
-            color: #f8f9fa;
+            /* Colores para el tema claro */
+            background-color: #f8f9fa; /* Fondo blanco-neutro */
+            color: #212529; /* Texto oscuro */
         }
+        /* Ajustes para la barra de navegación */
         .navbar-text, .nav-link, a {
-            color: #f8f9fa !important;
+            color: #fff !important; /* Mantener texto blanco para la barra oscura */
         }
         .navbar-brand {
             color: #fff !important;
         }
+        /* Estilos para las tarjetas y tablas */
         .card-futuristic {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
+            background-color: #ffffff; /* Fondo blanco */
+            border: 1px solid #dee2e6; /* Borde gris claro */
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            color: #f8f9fa;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+            color: #212529; /* Texto de la tarjeta oscuro */
             transition: transform 0.3s ease-in-out;
         }
         .card-futuristic:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
         }
         .card-title-futuristic, .text-info, h1 {
-            color: #00aaff !important;
+            color: #007bff !important; /* Color de acento azul */
         }
         .table-futuristic {
-            background-color: #1e1e1e;
-            color: #f8f9fa;
-            border: 1px solid #333;
+            background-color: #ffffff;
+            color: #212529;
+            border: 1px solid #dee2e6;
         }
         .table-futuristic th, .table-futuristic td {
-            border-color: #333;
+            border-color: #dee2e6;
         }
         .table-futuristic thead th {
-            background-color: #2b2b2b;
-            color: #00aaff;
+            background-color: #e9ecef; /* Fondo de encabezado gris claro */
+            color: #495057; /* Texto del encabezado gris oscuro */
         }
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-            background-color: #2b2b2b;
+            background-color: #f1f1f1; /* Color al pasar el cursor */
         }
+        /* Estilos para los formularios */
         .form-control-futuristic {
-            background-color: #2b2b2b;
-            color: #f8f9fa;
-            border: 1px solid #555;
+            background-color: #ffffff;
+            color: #212529;
+            border: 1px solid #ced4da;
             transition: border-color 0.3s ease-in-out;
         }
         .form-control-futuristic:focus {
-            background-color: #2b2b2b;
-            color: #f8f9fa;
-            border-color: #00aaff;
-            box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
+            background-color: #ffffff;
+            color: #212529;
+            border-color: #007bff; /* Color de acento azul al enfocar */
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
         }
         .btn-futuristic {
-            background-color: #00aaff;
+            background-color: #007bff;
             border: none;
             transition: background-color 0.3s ease-in-out;
             color: white;
         }
         .btn-futuristic:hover {
-            background-color: #0088cc;
+            background-color: #0056b3;
         }
     </style>
 </head>
