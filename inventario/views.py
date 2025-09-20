@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
-from .models import Equipo
-from .forms import EquipoForm
+from .models import Equipo, Componente
+from .forms import EquipoForm, ComponenteForm
+from django.forms import inlineformset_factory
 from bitacora.models import Auditoria, RegistroBitacora
+from django.contrib import messages
 #from .resources import EquipoResource
 from django.http import HttpResponse
 import openpyxl
@@ -12,6 +14,8 @@ from django.template.loader import get_template
 from django.template.loader import render_to_string
 from weasyprint import HTML
 
+# Formset para el modelo Componente
+ComponenteFormSet = inlineformset_factory(Equipo, Componente, form=ComponenteForm, extra=3, can_delete=True)
 
 def es_admin(user):
     return user.is_staff
@@ -40,13 +44,37 @@ def detalle_equipo(request, pk):
 def agregar_equipo(request):
     if request.method == 'POST':
         form = EquipoForm(request.POST)
-        if form.is_valid():
-            equipo = form.save()
-            Auditoria.objects.create(usuario=request.user, accion=f"Se creó el equipo: {equipo.nombre}")
+        formset = ComponenteFormSet(request.POST, instance=Equipo())
+        if form.is_valid() and formset.is_valid():
+            equipo = form.save(commit=False)
+            equipo.save()
+            
+            # Asocia el formset con el nuevo equipo
+            formset.instance = equipo
+            formset.save()
+            
+            Auditoria.objects.create(usuario=request.user, accion=f"Se creó un nuevo equipo: {equipo.nombre}")
+            messages.success(request, "Equipo y sus componentes agregados exitosamente.")
             return redirect('lista_equipos')
     else:
         form = EquipoForm()
-    return render(request, 'inventario/form_equipo.html', {'form': form, 'titulo': 'Agregar Equipo'})
+        formset = ComponenteFormSet(instance=Equipo())
+    
+    return render(request, 'inventario/form_equipo.html', {
+        'form': form, 
+        'formset': formset, 
+        'titulo': 'Agregar Nuevo Equipo'
+    })
+#def agregar_equipo(request):
+#    if request.method == 'POST':
+#        form = EquipoForm(request.POST)
+#        if form.is_valid():
+#            equipo = form.save()
+#            Auditoria.objects.create(usuario=request.user, accion=f"Se creó el equipo: {equipo.nombre}")
+#            return redirect('lista_equipos')
+#    else:
+#        form = EquipoForm()
+#    return render(request, 'inventario/form_equipo.html', {'form': form, 'titulo': 'Agregar Equipo'})
 
 @login_required
 @user_passes_test(es_admin)

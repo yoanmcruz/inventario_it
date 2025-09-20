@@ -35,6 +35,8 @@ class Equipo(models.Model):
 class Componente(models.Model):
     equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE, related_name='componentes')
     nombre = models.CharField(max_length=150)
+    marca = models.CharField(max_length=100, blank=True, null=True)
+    modelo = models.CharField(max_length=100, blank=True, null=True)
     serial = models.CharField(max_length=150, unique=True, blank=True, null=True)
     descripcion = models.TextField(blank=True, null=True)
 
