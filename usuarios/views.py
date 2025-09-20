@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import CustomUserCreationForm
 from django.contrib import messages
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -46,3 +49,12 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Has cerrado sesión exitosamente.')
     return redirect('login')
+
+def es_admin(user):
+    return user.is_staff
+
+@login_required
+@user_passes_test(es_admin)
+def lista_usuarios_admin(request):
+    usuarios = User.objects.all().order_by('username')
+    return render(request, 'usuarios/lista_usuarios_admin.html', {'usuarios': usuarios})

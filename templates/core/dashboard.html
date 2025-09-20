@@ -1,17 +1,76 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    <h1>Dashboard</h1>
-    <hr>
-    <div class="dashboard-stats">
-        <p><strong>Total de equipos:</strong> {{ estadisticas.total_equipos }}</p>
-        <p><strong>Equipos activos:</strong> {{ estadisticas.equipos_activos }}</p>
-        <p><strong>Equipos en mantenimiento:</strong> {{ estadisticas.equipos_mantenimiento }}</p>
+<style>
+    body {
+        background-color: #121212; /* Fondo oscuro */
+        color: #e0e0e0; /* Texto claro */
+    }
+    .card-futuristic {
+        background-color: #1e1e1e; /* Color de la tarjeta más claro */
+        border: 1px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        color: #e0e0e0;
+        transition: transform 0.3s ease-in-out;
+    }
+    .card-futuristic:hover {
+        transform: translateY(-5px); /* Efecto de levitación al pasar el mouse */
+    }
+    .card-title-futuristic {
+        color: #00aaff;
+    }
+    .card-body h2, .card-body h3 {
+        color: #00aaff;
+    }
+    .table-futuristic {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        border: 1px solid #333;
+    }
+    .table-futuristic th, .table-futuristic td {
+        border-color: #333;
+    }
+    .table-futuristic thead th {
+        background-color: #2b2b2b;
+        color: #00aaff;
+    }
+</style>
+
+<h1 class="text-center mb-4 text-info">Inventario de Equipos Informáticos</h1>
+<hr class="border border-secondary">
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    <div class="col">
+        <div class="card card-futuristic h-100">
+            <div class="card-body text-center">
+                <h2 class="card-title-futuristic">{{ estadisticas.total_equipos }}</h2>
+                <p class="card-text text-white-50">Total de Equipos</p>
+            </div>
+        </div>
     </div>
-    
-    <h2>Últimas Reparaciones</h2>
-    <table>
-        <thead>
+    <div class="col">
+        <div class="card card-futuristic h-100">
+            <div class="card-body text-center">
+                <h2 class="card-title-futuristic">{{ estadisticas.equipos_activos }}</h2>
+                <p class="card-text text-white-50">Equipos Activos</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-futuristic h-100">
+            <div class="card-body text-center">
+                <h2 class="card-title-futuristic">{{ estadisticas.equipos_mantenimiento }}</h2>
+                <p class="card-text text-white-50">Equipos en Mantenimiento</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-3 text-info">Últimas Reparaciones</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-futuristic">
+        <thead class="table-dark">
             <tr>
                 <th>Fecha</th>
                 <th>Equipo</th>
@@ -23,15 +82,17 @@
             {% for registro in ultimas_reparaciones %}
                 <tr>
                     <td>{{ registro.fecha|date:"d M Y H:i" }}</td>
-                    <td>{{ registro.equipo.nombre }}</td>
+                    <td><a href="{% url 'detalle_equipo' registro.equipo.pk %}" class="text-info text-decoration-none">{{ registro.equipo.nombre }}</a></td>
                     <td>{{ registro.descripcion }}</td>
                     <td>{{ registro.usuario.username }}</td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="4">No hay registros de reparaciones recientes.</td>
+                    <td colspan="4" class="text-center text-white-50">No hay registros de reparaciones recientes.</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+
 {% endblock %}
